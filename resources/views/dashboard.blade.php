@@ -6,9 +6,31 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-jet-welcome />
+        <div class="container">
+            <div class="row">
+                <table class="table caption-top">
+                    <thead>
+                        <tr>
+                            <th scope="col">User No.</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Created At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php($i = 1)
+                        @foreach($users as $user)
+                        <tr>
+                            <th scope="row">{{$i ++}}</th>
+                            <td>{{$user -> name}}</td>
+                            <td>{{$user -> email}}</td>
+                            <!-- change the format of create at with forHumman function -->
+                            <td>{{$user -> created_at -> diffforHumans()}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
             </div>
         </div>
     </div>
