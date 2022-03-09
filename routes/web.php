@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,10 +31,12 @@ Route::get('/contact', function () {
 
 Route::get('/contact', [ContactController::class, 'index']);
 
+Route::get('/category/all', [CategoryController::class, 'AllCat']) -> name('all.category');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     // grab all of the user data
-    $users = User::all();
-    // $users = DB::table('users')->get();
+    //$users = User::all();
+    $users = DB::table('users')->get();
 
     //pass all the user data to the dashboard with compact
     return view('dashboard', compact('users'));
